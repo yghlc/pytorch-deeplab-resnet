@@ -66,11 +66,11 @@ def assert_almost_equal(caffe_tensor, th_tensor):
     c = caffe_tensor[0]
 
     if t.shape != c.shape:
-        print "t.shape", t.shape
-        print "c.shape", c.shape
+        print ("t.shape", t.shape)
+        print ("c.shape", c.shape)
 
     d = np.linalg.norm(t - c)
-    print "d", d
+    print ("d", d)
     assert d < 500
 
 def dist_(caffe_tensor, th_tensor):
@@ -78,11 +78,11 @@ def dist_(caffe_tensor, th_tensor):
     c = caffe_tensor[0]
 
     if t.shape != c.shape:
-        print "t.shape", t.shape
-        print "c.shape", c.shape
+        print ("t.shape", t.shape)
+        print ("c.shape", c.shape)
 
     d = np.linalg.norm(t - c)
-    print "d", d
+    print ("d", d)
 
 
 
@@ -283,10 +283,10 @@ def convert(img_p, layers):
     dist_(caffe_model.blobs['res5c_res05'].data,o[8])
     dist_(caffe_model.blobs['fc_fusion'].data,output[3].data.numpy())
 
-    print 'input image shape',img_p[np.newaxis, :].transpose(0,3,1,2).shape
-    print 'output shapes -'
+    print ('input image shape',img_p[np.newaxis, :].transpose(0,3,1,2).shape)
+    print ('output shapes -')
     for a in output:
-	print 	a.data.numpy().shape
+        print (a.data.numpy().shape)
 
     torch.save(model.state_dict(),'data/MS_DeepLab_resnet_trained_VOC.pth')
 
@@ -296,7 +296,7 @@ def main():
     img = load_image("data/2007_000033.jpg")
     img_p = preprocess(img)
 
-    print "CONVERTING Multi-scale DeepLab_resnet"
+    print ("CONVERTING Multi-scale DeepLab_resnet")
     convert(img_p, layers = 101)
 
 

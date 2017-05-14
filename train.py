@@ -57,7 +57,7 @@ def read_file(path_to_file):
     return img_list
 
 def chunker(seq, size):
- return (seq[pos:pos+size] for pos in xrange(0,len(seq), size))
+ return (seq[pos:pos+size] for pos in range(0,len(seq), size))
 
 def resize_label_batch(label, size):
     label_resized = np.zeros((size,size,1,label.shape[3]))
@@ -233,16 +233,16 @@ for iter in range(max_iter+1):
     loss.backward()
 
     if iter %1 == 0:
-        print 'iter = ',iter, 'of',max_iter,'completed, loss = ', iter_size*(loss.data.cpu().numpy())
+        print ('iter = ',iter, 'of',max_iter,'completed, loss = ', iter_size*(loss.data.cpu().numpy()))
 
     if iter % iter_size  == 0:
         optimizer.step()
         lr_ = lr_poly(base_lr,iter,max_iter,0.9)
-        print '(poly lr policy) learning rate',lr_
+        print ('(poly lr policy) learning rate',lr_)
         optimizer = optim.SGD([{'params': get_1x_lr_params_NOscale(model), 'lr': lr_ }, {'params': get_10x_lr_params(model), 'lr': 10*lr_} ], lr = lr_, momentum = 0.9,weight_decay = weight_decay)
         optimizer.zero_grad()
 
     if iter % 1000 == 0 and iter!=0:
-        print 'taking snapshot ...'
+        print ('taking snapshot ...')
         torch.save(model.state_dict(),'data/snapshots/VOC12_scenes_'+str(iter)+'.pth')
 

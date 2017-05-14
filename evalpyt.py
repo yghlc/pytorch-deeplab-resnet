@@ -33,11 +33,11 @@ Options:
 """
 
 args = docopt(docstr, version='v0.1')
-print args
+print( args)
 
 def get_iou(pred,gt):
     if pred.shape!= gt.shape:
-        print 'pred shape',pred.shape, 'gt shape', gt.shape
+        print ('pred shape',pred.shape, 'gt shape', gt.shape)
     assert(pred.shape == gt.shape)    
     gt = gt.astype(np.float32)
     pred = pred.astype(np.float32)
@@ -77,7 +77,7 @@ img_list = open('data/list/val.txt').readlines()
 for iter in range(1,21):   #TODO set the (different iteration)models that you want to evaluate on. Models are saved during training after each 1000 iters by default.
     saved_state_dict = torch.load(os.path.join('data/snapshots/',snapPrefix+str(iter)+'000.pth'))
     if counter==0:
-	print snapPrefix
+	print (snapPrefix)
     counter+=1
     model.load_state_dict(saved_state_dict)
 
@@ -113,4 +113,4 @@ for iter in range(1,21):   #TODO set the (different iteration)models that you wa
         iou_pytorch = get_iou(output,gt)       
         pytorch_list.append(iou_pytorch)
 
-    print 'pytorch',iter, np.sum(np.asarray(pytorch_list))/len(pytorch_list)
+    print ('pytorch',iter, np.sum(np.asarray(pytorch_list))/len(pytorch_list))
