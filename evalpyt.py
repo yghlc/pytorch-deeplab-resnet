@@ -3,8 +3,8 @@ from scipy import ndimage
 import cv2
 import numpy as np
 import sys
-sys.path.insert(0,'/data1/ravikiran/SketchObjPartSegmentation/src/caffe-switch/caffe/python')
-import caffe
+#sys.path.insert(0,'/data1/ravikiran/SketchObjPartSegmentation/src/caffe-switch/caffe/python')
+#import caffe
 import torch
 from torch.autograd import Variable
 import torchvision.models as models
@@ -75,9 +75,10 @@ gt_path = args['--testGTpath']
 img_list = open('data/list/val.txt').readlines()
 
 for iter in range(1,21):   #TODO set the (different iteration)models that you want to evaluate on. Models are saved during training after each 1000 iters by default.
-    saved_state_dict = torch.load(os.path.join('data/snapshots/',snapPrefix+str(iter)+'000.pth'))
+    #saved_state_dict = torch.load(os.path.join('data/snapshots/',snapPrefix+str(iter)+'000.pth'))
+    saved_state_dict = torch.load(os.path.join('data/snapshots/', 'MS_DeepLab_resnet_trained_VOC.pth'))
     if counter==0:
-	print (snapPrefix)
+        print (snapPrefix)
     counter+=1
     model.load_state_dict(saved_state_dict)
 

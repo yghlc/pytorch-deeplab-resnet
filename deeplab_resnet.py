@@ -10,7 +10,7 @@ def outS(i):
     i = int(i)
     i = (i+1)/2
     i = int(np.ceil((i+1)/2.0))
-    i = (i+1)/2
+    i = int((i+1)/2) # python2 will return j as int, but python2 will return j as float, hlc
     return i
 def conv3x3(in_planes, out_planes, stride=1):
     "3x3 convolution with padding"

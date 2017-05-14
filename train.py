@@ -1,9 +1,10 @@
+import cv2
 import torch
 import torch.nn as nn
 import numpy as np
 import pickle
 import deeplab_resnet 
-import cv2
+
 from torch.autograd import Variable
 import torch.optim as optim
 import scipy.misc
@@ -46,7 +47,7 @@ def outS(i):
     j = int(i)
     j = (j+1)/2
     j = int(np.ceil((j+1)/2.0))
-    j = (j+1)/2
+    j = int((j+1)/2)  # python2 will return j as int, but python2 will return j as float, hlc
     return j
 
 def read_file(path_to_file):
@@ -219,6 +220,7 @@ optimizer.zero_grad()
 data_gen = chunker(data_list, batch_size)
 
 for iter in range(max_iter+1):
+    #chunk = data_gen.__next__()  # python3 hlc
     chunk = data_gen.next()
 
     images, label = get_data_from_chunk_v2(chunk)

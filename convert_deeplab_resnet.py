@@ -2,7 +2,8 @@ import numpy as np
 import os
 os.environ["GLOG_minloglevel"] = "2"
 import sys
-sys.path.insert(0,'/data1/ravikiran/SketchObjPartSegmentation/src/caffe-switch/caffe/python')
+# sys.path.insert(0,'/data1/ravikiran/SketchObjPartSegmentation/src/caffe-switch/caffe/python')
+sys.path.insert(0,'/home/hlc/codes/PycharmProjects/rsBuildingSeg/DeepLab-Context/python')
 import re
 import caffe
 import numpy as np
@@ -102,7 +103,7 @@ def load_image(path, size=321):
 
 def load_caffe(img_p, layers=50):
     caffe.set_mode_cpu()
-    #caffe.set_device(0)
+    # caffe.set_device(0)
 
     prototxt = "data/test.prototxt" 
     caffemodel = "data/train_iter_20000.caffemodel" 
@@ -292,8 +293,8 @@ def convert(img_p, layers):
 
 
 def main():
-    #img = load_image("data/cat.jpg")
-    img = load_image("data/2007_000033.jpg")
+    img = load_image("data/cat.jpg")
+    # img = load_image("data/2007_000033.jpg")
     img_p = preprocess(img)
 
     print ("CONVERTING Multi-scale DeepLab_resnet")
