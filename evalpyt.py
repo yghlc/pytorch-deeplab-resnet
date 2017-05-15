@@ -26,6 +26,7 @@ Usage:
 Options:
     -h, --help                  Print this message
     --visualize                 view outputs of each sketch
+    --LISTpath=<str>            Input image number list file [default: data/list/train_aug.txt]
     --snapPrefix=<str>          Snapshot [default: VOC12_scenes_]
     --testGTpath=<str>          Ground truth path prefix [default: data/gt/]
     --testIMpath=<str>          Sketch images path prefix [default: data/img/]
@@ -62,6 +63,12 @@ def get_iou(pred,gt):
     
     return Aiou
 
+def read_file(path_to_file):
+    with open(path_to_file) as f:
+        img_list = []
+        for line in f:
+            img_list.append(line[:-1])
+    return img_list
 
 
 gpu0 = int(args['--gpu0'])
@@ -72,7 +79,8 @@ counter = 0
 model.cuda(gpu0)
 snapPrefix = args['--snapPrefix'] 
 gt_path = args['--testGTpath']
-img_list = open('data/list/val.txt').readlines()
+# img_list = open('data/list/val.txt').readlines()
+img_list = read_file(args['--LISTpath'])
 
 for iter in range(1,21):   #TODO set the (different iteration)models that you want to evaluate on. Models are saved during training after each 1000 iters by default.
     #saved_state_dict = torch.load(os.path.join('data/snapshots/',snapPrefix+str(iter)+'000.pth'))

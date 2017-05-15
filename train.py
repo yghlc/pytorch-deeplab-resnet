@@ -246,5 +246,5 @@ for iter in range(max_iter+1):
 
     if iter % 1000 == 0 and iter!=0:
         print ('taking snapshot ...')
-        torch.save(model.state_dict(),'data/snapshots/VOC12_scenes_'+str(iter)+'.pth')
+        torch.save(model.state_dict(),'data/snapshots/spacenet_'+str(iter)+'.pth')
 
