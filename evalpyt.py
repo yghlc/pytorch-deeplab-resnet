@@ -82,9 +82,9 @@ gt_path = args['--testGTpath']
 # img_list = open('data/list/val.txt').readlines()
 img_list = read_file(args['--LISTpath'])
 
-for iter in range(1,21):   #TODO set the (different iteration)models that you want to evaluate on. Models are saved during training after each 1000 iters by default.
-    #saved_state_dict = torch.load(os.path.join('data/snapshots/',snapPrefix+str(iter)+'000.pth'))
-    saved_state_dict = torch.load(os.path.join('data/snapshots/', 'MS_DeepLab_resnet_trained_VOC.pth'))
+for iter in range(1,11):   #TODO set the (different iteration)models that you want to evaluate on. Models are saved during training after each 1000 iters by default.
+    saved_state_dict = torch.load(os.path.join('data/snapshots/',snapPrefix+str(iter)+'000.pth'))
+    # saved_state_dict = torch.load(os.path.join('data/snapshots/', 'MS_DeepLab_resnet_trained_VOC.pth'))
     if counter==0:
         print (snapPrefix)
     counter+=1
