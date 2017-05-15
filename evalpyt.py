@@ -92,7 +92,7 @@ for iter in range(1,11):   #TODO set the (different iteration)models that you wa
 
     pytorch_list = [];
     for i in img_list:
-        img = np.zeros((513,513,3));
+        img = np.zeros((653,653,3));
 
         # img_temp = cv2.imread(os.path.join(im_path,i[:-1]+'.jpg')).astype(float)
         img_temp = cv2.imread(os.path.join(im_path, i + '.tif')).astype(float)
@@ -108,7 +108,7 @@ for iter in range(1,11):   #TODO set the (different iteration)models that you wa
         gt[gt==255] = 0
 
         output = model(Variable(torch.from_numpy(img[np.newaxis, :].transpose(0,3,1,2)).float(),volatile = True).cuda(gpu0))
-        interp = nn.UpsamplingBilinear2d(size=(513, 513))
+        interp = nn.UpsamplingBilinear2d(size=(653, 653))
         output = interp(output[3]).cpu().data[0].numpy()
         output = output[:,:img_temp.shape[0],:img_temp.shape[1]]
         
