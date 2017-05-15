@@ -94,7 +94,8 @@ for iter in range(1,21):   #TODO set the (different iteration)models that you wa
     for i in img_list:
         img = np.zeros((513,513,3));
 
-        img_temp = cv2.imread(os.path.join(im_path,i[:-1]+'.jpg')).astype(float)
+        # img_temp = cv2.imread(os.path.join(im_path,i[:-1]+'.jpg')).astype(float)
+        img_temp = cv2.imread(os.path.join(im_path, i[:-1] + '.tif')).astype(float)
         img_original = img_temp
         img_temp[:,:,0] = img_temp[:,:,0] - 104.008
         img_temp[:,:,1] = img_temp[:,:,1] - 116.669
