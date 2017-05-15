@@ -103,7 +103,9 @@ def get_data_from_chunk_v2(chunk):
         images[:,:,:,i] = img_temp
 
         # gt_temp = cv2.imread(os.path.join(gt_path,piece+'.png'))[:,:,0]
-        gt_temp = cv2.imread(os.path.join(gt_path, piece + 'segcls.png'))[:, :, 0]
+        png_path = os.path.join(gt_path, piece + 'segcls.png')
+        png_path = png_path.replace('_8bit','')
+        gt_temp = cv2.imread(png_path)[:, :, 0]
         gt_temp[gt_temp == 255] = 0
         gt_temp = cv2.resize(gt_temp,(321,321) , interpolation = cv2.INTER_NEAREST)
         gt_temp = scale_gt(gt_temp,scale)
